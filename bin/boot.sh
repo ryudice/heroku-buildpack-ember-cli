@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
-erb $HOME/config/nginx.conf.erb > $HOME/config/nginx.conf
+erb config/nginx.conf.erb > config/nginx.conf
 
-mkdir -p $HOME/logs/nginx
-touch $HOME/logs/nginx/access.log $HOME/logs/nginx/error.log
+mkdir -p logs/nginx
+touch logs/nginx/access.log logs/nginx/error.log
 
-(tail -f -n 0 $HOME/logs/nginx/*.log &)
+(tail -f -n 0 logs/nginx/*.log &)
 
-exec $HOME/vendor/nginx/sbin/nginx -p $HOME -c $HOME/config/nginx.conf
+exec vendor/nginx/sbin/nginx -p . -c config/nginx.conf
